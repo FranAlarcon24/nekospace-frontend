@@ -1,6 +1,6 @@
 import { Container, Row } from 'react-bootstrap';
 import '../styles/card.css'
-import '../styles/HomeAdmin.css'
+import '../styles/homeAdmin.css'
 
 
 function HomeAdmin() {
