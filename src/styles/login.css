@@ -1,0 +1,119 @@
+.fondo{
+    background-size: contain;
+    background-attachment: fixed;
+    align-items: end;
+    max-width: 100%;
+    width: 100%;
+    flex-wrap: wrap !important;
+}
+.fon{
+    background-image: url('../assets/images/brillos.webp');
+    background-size: contain;
+    background-color: rgb(98, 79, 133)!important;
+    padding: 40px;
+    flex-wrap: wrap !important;
+    height: 100rem;
+}
+.pro3 {
+    width: 50% !important;
+    align-items: center;
+    max-width: 1000000px !important;
+    background-color: rgb(10, 3, 23);
+    border-radius: 20px;
+    box-shadow: 0 3px 9px rgba(0,0,0,0.08);
+    border: 3px double #280a41;
+}
+
+.titulo{
+    text-align: center !important;
+    font-family: cursive;
+    flex-wrap: wrap !important;
+    color: rgb(185, 181, 255)!important;
+}
+.titulo2{
+    text-align: center;
+    font-family: cursive;
+    flex-wrap: wrap !important;
+    color: rgb(170, 157, 255);
+}
+.image{
+    width: 100px;
+    background-size: contain;
+    border-radius: 1rem;
+    border: 5px double #280a41;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-style: italic;
+    display: flex;
+    margin: auto;
+}
+.imagen{
+    width: 40px;
+    height: 40px;
+}
+.imagenM{
+    width: 400px;
+    height: 200px;
+    margin-left: 60%;
+    position: absolute;
+    top: 115% !important;
+    border-radius: 10%;
+    border-top: #753ea1;
+}
+.sub2{
+    font-size: o.9rem   !important;
+    font-weight: 500 !important ;
+    text-align: justify;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(238, 252, 255);
+}
+.redes{
+    text-align: justify !important;
+    margin-bottom: 1rem;
+    border: 5px double #280a41;
+}
+.welcome{
+    background-color: rgb(10, 3, 23);
+    width: 100% !important; 
+    max-width: 100% !important; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 3px double #280a41;
+}
+.tirita-neg{
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: #9c1c4f;
+}
+.me{
+    font-size: medium;
+}
+.fonC {
+    background-color: rgb(150, 103, 194);
+}
+.formC{
+    text-align: center !important;
+    width: 90%;
+    margin: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    background-color: rgb(193, 144, 179);
+    border-radius: 8px;
+    box-shadow: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.formC label{
+    margin-bottom: 0.4rem;
+    font-size: 18px;
+    color: black;
+}
+.formC input{
+    text-decoration: #280a41;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 15px;
+    background-color: aliceblue;
+    text-align: center !important;
+}

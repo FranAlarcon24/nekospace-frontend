@@ -1,0 +1,47 @@
+.text {
+    font-size: o.9rem   !important;
+    font-weight: 500 !important ;
+    text-align: justify;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 0, 0);
+}
+.text-principal{
+    text-align: center !important;
+    font-size: o.9rem   !important;
+    font-weight: 500 !important ;
+    text-align: justify;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(68, 22, 73);
+
+
+}
+.btn4 {
+    font-size: o.9rem   !important;
+    font-weight: 500 !important ;
+    text-align: justify;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 0, 0);
+    background-color: rgb(97, 64, 128);
+
+}
+.fon-card{
+    align-items: center !important;
+    text-align: center !important;
+    width: 90%;
+    margin: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    background-color: rgb(193, 144, 179);
+    border-radius: 8px;
+    box-shadow: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    border-color: black !important;
+}
+.fon4{
+    background-image: url('../assets/images/brillos.webp');
+    background-size: contain;
+    background-color: rgb(98, 79, 133)!important;
+    padding: 40px;
+    flex-wrap: wrap !important;
+    height: 50rem;
+}

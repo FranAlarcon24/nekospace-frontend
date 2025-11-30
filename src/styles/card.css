@@ -1,0 +1,37 @@
+.card {
+  width: 21% !important;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(241, 238, 255, 0.08);
+  flex-wrap: wrap !important;
+}
+
+.card-body {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: rgb(234, 220, 242);
+  flex-wrap: wrap !important;
+}
+.Button{
+  background-color: rgb(94, 62, 103);
+  border-color: rgb(44, 9, 62);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: 20px;
+  flex-wrap: wrap !important;
+}
+.spice {
+  display: flex;
+  gap: 40px;
+  justify-content: space-evenly;
+  padding: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap !important;
+}
+.card-img {
+  width: 12px;
+  height: 200px;
+  flex-wrap: wrap !important;
+}

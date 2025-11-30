@@ -1,0 +1,20 @@
+.fondo{
+    background-size: contain;
+    background-attachment: fixed;
+    align-items: end;
+    max-width: 100%;
+    width: 100%;
+    flex-wrap: wrap !important;
+}
+.titulo{
+    text-align: justify;
+    font-family: cursive;
+    flex-wrap: wrap !important;
+    color: rgb(0, 0, 0);
+}
+.sub{
+    text-align: justify;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 0, 0);
+}
+
