@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import ProyectCard from '../components/organism/ProyectCard.jsx';
 import ProductosService from '../Services/Productos/ProductoService.jsx';
 import '../styles/card.css'
-import '../styles/HomeUser.css'
+import '../styles/homeUser.css'
 import gatoSpace from '../assets/images/gatoSpace.webp'
 import mapa from '../assets/images/mapa.webp'
 
