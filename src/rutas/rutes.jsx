@@ -5,7 +5,7 @@ const Login = lazy(() => import('../pages/Login'));
 const CreateUser = lazy(() => import('../pages/create-user'));
 const HomeAdmin = lazy(() => import('../pages/homeAdmin'));
 const Homeauth = lazy(() => import('../pages/Homeauth'));
-const Contacto = lazy(() => import('../pages/Contacto'));
+const Contacto = lazy(() => import('../pages/contacto'));
 
 const userRoutes = [
   { path: '/', element: <Home />, showNavbar: true },
