@@ -6,7 +6,7 @@ import CBody from '../molecules/CBody';
 import { useNavigate } from "react-router-dom";
 
 
-function ProyectCard({ proyect }) {
+function ProyectCard({ proyect, onAddToCarrito }) {
     const navigate = useNavigate();
 
     return (
@@ -20,10 +20,11 @@ function ProyectCard({ proyect }) {
                 <ButtonL href={proyect.repoUrl} target="_blank" variant="secondary">
                     ver mas
                 </ButtonL>
+                <button className="Button" style={{marginTop:8,background:'#2d9cdb',color:'#fff'}} onClick={()=>onAddToCarrito && onAddToCarrito(proyect)}>
+                    Agregar al carrito
+                </button>
             </Card.Body>
         </Card>
-        
-            
     );
 };
 

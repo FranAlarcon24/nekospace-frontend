@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import ProyectCard from '../components/organism/ProyectCard.jsx';
-import ProductosService from '../Services/Productos/ProductoService.jsx';
+import ProductosService from '../services/productos/ProductoService.jsx';
 import '../styles/card.css'
 import '../styles/homeUser.css'
 import gatoSpace from '../assets/images/gatoSpace.webp'
-import mapa from '../assets/images/mapa.webp'
+// import mapa from '../assets/images/mapa.webp'
 
-function HomeUser() {
+import Carrito from '../components/molecules/Carrito';
+
+function HomeUser({ carrito, setCarrito }) {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showCarrito, setShowCarrito] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -55,8 +58,20 @@ function HomeUser() {
   const posters = productos.filter(p => (p.categoriaName || p.name || '').toString().toLowerCase().includes('poster') || (p.name || '').toLowerCase().includes('poster'));
   const figuritas = productos.filter(p => (p.categoriaName || p.name || '').toString().toLowerCase().includes('figu') || (p.name || '').toLowerCase().includes('figu'));
 
+  const handleAddToCarrito = (producto) => {
+    setCarrito([...carrito, producto]);
+    setShowCarrito(true);
+  };
+
+  const handleRemoveFromCarrito = (idx) => {
+    setCarrito(carrito.filter((_, i) => i !== idx));
+  };
+
   return (
     <>
+      {showCarrito && (
+        <Carrito items={carrito} onRemove={handleRemoveFromCarrito} onClose={()=>setShowCarrito(false)} />
+      )}
       <div className='fondo'>
         <Container className="welcome">
           <h1 className='titulo'>NekoSpace</h1>
@@ -76,7 +91,7 @@ function HomeUser() {
               {loading ? <p>Cargando...</p> :
                 error ? <p>{error}</p> :
                 (Array.isArray(posters) && posters.length ? posters.map(item => (
-                  <ProyectCard key={item.id} proyect={item} />
+                  <ProyectCard key={item.id} proyect={item} onAddToCarrito={handleAddToCarrito} />
                 )) : <p>No hay posters</p>)
               }
             </div>
@@ -92,7 +107,7 @@ function HomeUser() {
               {loading ? <p>Cargando...</p> :
                 error ? <p>{error}</p> :
                 (Array.isArray(figuritas) && figuritas.length ? figuritas.map(item => (
-                  <ProyectCard key={item.id} proyect={item} />
+                  <ProyectCard key={item.id} proyect={item} onAddToCarrito={handleAddToCarrito} />
                 )) : <p>No hay figuritas</p>)
               }
             </div>
@@ -109,7 +124,7 @@ function HomeUser() {
             <img className='imagen' src={gatoSpace} alt="tiktok"/><p className='sub2'>@Neko_SpaceOwO</p>
           </Container>
 
-          <img className='imagenM2' src={mapa} alt="mapa"/>
+          {/* <img className='imagenM2' src={mapa} alt="mapa"/> */}
 
         </Container>
       </div>

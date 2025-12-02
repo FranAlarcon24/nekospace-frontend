@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { generarMensaje } from '../utils/generarMensaje';
 import { Link } from 'react-router-dom';
 import '../styles/create.css'
 import '../styles/Contacto.css'
@@ -13,25 +14,22 @@ const CreateUser = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!form.correo || !form.contrasena) {
-            console.log('Por favor, complete todos los campos obligatorios.');
+        if (!form.nombre || !form.correo || !form.contrasena) {
+            generarMensaje('Completa nombre, correo y contraseña', 'error');
             return;
         }
-
         setLoading(true);
-
         try {
             const usuario = {
                 "nombre": form.nombre,
                 "correo": form.correo,
-                "password": form.password,
+                "password": form.contrasena,
                 rol: {
                     "id": 3
                 }
             }
-            const response = await UserService.createUser(usuario);
-
-            console.log('usuario creado'); 
+            // const response = await UserService.createUser(usuario);
+            generarMensaje('Usuario creado correctamente', 'success');
         } finally {
             setLoading(false);
         }

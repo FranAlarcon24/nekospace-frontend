@@ -3,7 +3,7 @@ import Producto from '../data/Producto.js';
 import '../styles/card.css'
 import '../styles/login.css'
 import gatoSpace from '../assets/images/gatoSpace.webp'
-import mapa from '../assets/images/mapa.webp'
+// import mapa from '../assets/images/mapa.webp'
 import InicioForm from '../components/organism/inicioForm.jsx';
 
 
@@ -39,7 +39,7 @@ function login() {
          <img className='imagen' src={gatoSpace} alt="tiktok"/><p className='sub2'>@Neko_SpaceOwO</p>
         </Container>
 
-         <img className='imagenM' src={mapa} alt="mapa"/>
+         {/* <img className='imagenM' src={mapa} alt="mapa"/> */}
 
        </Container>
     

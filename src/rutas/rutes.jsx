@@ -4,18 +4,25 @@ const Home = lazy(() => import('../pages/homeUser'));
 const Login = lazy(() => import('../pages/Login'));
 const CreateUser = lazy(() => import('../pages/create-user'));
 const HomeAdmin = lazy(() => import('../pages/homeAdmin'));
+const AdminDashboard = lazy(() => import('../pages/adminDashboard'));
+const UsuariosDashboard = lazy(() => import('../pages/usuariosDashboard'));
 const Homeauth = lazy(() => import('../pages/Homeauth'));
 const Contacto = lazy(() => import('../pages/contacto'));
+const CarritoPage = lazy(() => import('../pages/carrito'));
+const About = lazy(() => import('../pages/about'));
 
 const userRoutes = [
   { path: '/', element: <Home />, showNavbar: true },
   { path: '/login', element: <Login />, showNavbar: false },
   { path: '/create-user', element: <CreateUser />, showNavbar: false },
   { path: '/contacto', element: <Contacto />, showNavbar: true },
+  { path: '/carrito', element: <CarritoPage />, showNavbar: true },
+  { path: '/about', element: <About />, showNavbar: true },
 ];
 
 const adminRoutes = [
-  { path: '/admin/dashboard', element: <HomeAdmin />, isAdmin: true, showNavbar: true },
+  { path: '/admin/dashboard', element: <AdminDashboard />, isAdmin: true, showNavbar: true },
+  { path: '/admin/usuarios', element: <UsuariosDashboard />, isAdmin: true, showNavbar: true },
 ];
 
 const notFoundRoute = {
