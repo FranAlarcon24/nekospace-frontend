@@ -5,7 +5,6 @@ import ProductosService from '../services/productos/ProductoService.jsx';
 import '../styles/card.css'
 import '../styles/homeUser.css'
 import gatoSpace from '../assets/images/gatoSpace.webp'
-// import mapa from '../assets/images/mapa.webp'
 
 import Carrito from '../components/molecules/Carrito';
 
@@ -67,10 +66,14 @@ function HomeUser({ carrito, setCarrito }) {
     setCarrito(carrito.filter((_, i) => i !== idx));
   };
 
+  const onClear = () => {
+    setCarrito([]);
+  }
+
   return (
     <>
       {showCarrito && (
-        <Carrito items={carrito} onRemove={handleRemoveFromCarrito} onClose={()=>setShowCarrito(false)} />
+        <Carrito items={carrito} onRemove={handleRemoveFromCarrito} onClose={()=>setShowCarrito(false)} onClear={onClear}/>
       )}
       <div className='fondo'>
         <Container className="welcome">
@@ -124,7 +127,6 @@ function HomeUser({ carrito, setCarrito }) {
             <img className='imagen' src={gatoSpace} alt="tiktok"/><p className='sub2'>@Neko_SpaceOwO</p>
           </Container>
 
-          {/* <img className='imagenM2' src={mapa} alt="mapa"/> */}
 
         </Container>
       </div>

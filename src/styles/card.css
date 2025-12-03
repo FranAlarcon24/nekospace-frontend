@@ -31,7 +31,7 @@
   flex-wrap: wrap !important;
 }
 .card-img {
-  width: 12px;
+  width: 100%;
   height: 200px;
   flex-wrap: wrap !important;
 }

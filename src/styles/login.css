@@ -12,7 +12,7 @@
     background-color: rgb(98, 79, 133)!important;
     padding: 40px;
     flex-wrap: wrap !important;
-    height: 100rem;
+    min-height: auto;
 }
 .pro3 {
     width: 50% !important;

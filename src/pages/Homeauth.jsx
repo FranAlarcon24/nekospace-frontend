@@ -34,7 +34,6 @@ return (
          <img className='imagen' src={gatoSpace} alt="tiktok"/><p className='sub2'>@Neko_SpaceOwO</p>
         </Container>
 
-         {/* <img className='imagenM' src={mapa} alt="mapa"/> */}
 
        </Container>
     

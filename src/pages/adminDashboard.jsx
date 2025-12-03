@@ -3,14 +3,14 @@ import '../styles/usuariosDashboard.css';
 import { uploadToImgBB } from '../utils/uploadImage';
 import Carrito from '../components/molecules/Carrito';
 
-const mockProducts = [
-  { id: 1, modelo: 'Tarea completo', categoria: 'Admin', producto: 'admin', numeroId: 'admin@gmail.com' },
-  { id: 2, modelo: 'joel perez', categoria: 'Usuario', producto: 'joel', numeroId: 'joel@gmail.com' },
-  { id: 3, modelo: 'javier', categoria: 'Usuario', producto: 'javier', numeroId: 'javier@gmail.com' },
-];
+//const mockProducts = [
+  //{ id: 1, modelo: 'Tarea completo', categoria: 'Admin', producto: 'admin', numeroId: 'admin@gmail.com' },
+  //{ id: 2, modelo: 'joel perez', categoria: 'Usuario', producto: 'joel', numeroId: 'joel@gmail.com' },
+  //{ id: 3, modelo: 'javier', categoria: 'Usuario', producto: 'javier', numeroId: 'javier@gmail.com' },
+//];
 
 function AdminDashboard() {
-  const [products, setProducts] = useState(mockProducts);
+  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({ modelo: '', categoria: '', producto: '', numeroId: '', imagen: null });
@@ -18,12 +18,30 @@ function AdminDashboard() {
   const [showCarrito, setShowCarrito] = useState(false);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (!user || user.rol !== 'admin') {
-      window.location.href = '/login';
-    }
-    document.body.classList.add('home-admin-bg');
-    return () => document.body.classList.remove('home-admin-bg');
+    const cargarProductos = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          console.error('No se encontró token de autenticación');
+          return;
+        }
+        const response = await fetch('https://nekospace-api.onrender.com/api/productos', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Error al cargar productos');
+        }
+        const data = await response.json();
+        setProducts(data.productos || []);
+      } catch (error) {
+        console.error('Error cargando productos:', error);
+      }
+    };
+    cargarProductos();
+
   }, []);
 
   const filteredProducts = products.filter(product =>

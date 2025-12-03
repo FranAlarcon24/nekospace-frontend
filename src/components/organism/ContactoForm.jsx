@@ -30,7 +30,7 @@ function ContactoForm(){
             <FormF label="correo" id="correo" type="email" placeholder="ejemplo@gmail.com" value={FormData.correo} onChange={handleCgange} name="correo"/>
             <FormF label="numero" id="numero" type="tel" placeholder="000-000-0000" value={FormData.numero} onChange={handleCgange} name="numero"/>
             <FormF label="tipo de mensaje" id="tipoMensaje" type="text" placeholder="consulta, sugerencia, reclamo" value={FormData.tipoMensaje} onChange={handleCgange} name="tipoMensaje"/>
-            <FormF label="mensaje" id="mensaje" type="textarea" placeholder="deja aqui tu mensaje" value={FormData.mensaje} onChange={handleCgange} name="mensaje"/>
+            <FormF label="mensaje" id="mensaje" type="text" placeholder="deja aqui tu mensaje" value={FormData.mensaje} onChange={handleCgange} name="mensaje"/>
 
             <Button type="submit">Enviar</Button>
         </form>

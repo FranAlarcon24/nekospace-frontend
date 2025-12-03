@@ -3,7 +3,7 @@ import FormF from "../molecules/FormF";
 import Button from "../atoms/Button";
 import ButtonL from "../molecules/ButtonL";
 import { generarMensaje } from "../../utils/generarMensaje";
-import { AuthProvider, useAuth } from "../../context/AuthC";
+import {useAuth } from "../../context/AuthC";
 import { useNavigate } from "react-router-dom";
 
 

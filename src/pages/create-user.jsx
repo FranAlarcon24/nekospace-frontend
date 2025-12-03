@@ -28,7 +28,7 @@ const CreateUser = () => {
                     "id": 3
                 }
             }
-            // const response = await UserService.createUser(usuario);
+             const response = await UsuarioService.createUser(usuario);
             generarMensaje('Usuario creado correctamente', 'success');
         } finally {
             setLoading(false);
