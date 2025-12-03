@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import FormF from "../molecules/FormF";
 import Button from "../atoms/Button";
-import { AuthC } from "../../context/AuthC";
-import generarMensaje from "../../utils/generarMensaje";
+import {generarMensaje} from "../../utils/generarMensaje";
 
 
 function RegistroForm(){
@@ -23,6 +22,10 @@ function RegistroForm(){
 
     const handlesubmit = async (e) => {
         e.preventDefault();
+        if (formData.password !== formData.confirmPassword) {
+        alert('Las contraseñas no coinciden');
+        return;
+        }
         
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
@@ -35,7 +38,7 @@ function RegistroForm(){
                 },
                 body: JSON.stringify(data),
             });
-            if (!response.ok) {
+            if (response.ok) {
                 alert('registro exitoso');
             } else {
                 alert('error en el registro');
@@ -51,8 +54,8 @@ function RegistroForm(){
 
             <FormF label="nombre" id="nombre" type="text" placeholder="nombre" value={FormData.nombre} onChange={handleCgange} name="nombre"/>
             <FormF label="correo" id="correo" type="email" placeholder="ejemplo@gmail.com" value={FormData.correo} onChange={handleCgange} name="correo"/>
-            <FormF label="contraseña" id="contraseña" type="password" placeholder="contraseña" value={FormData.password} onChange={handleCgange} name="password" required/>
-            <FormF label="confirmar contraseña" id="confirmar contraseña" type="password" placeholder="confirmar contraseña" value={FormData.confirmPassword} onChange={handleCgange} name="confirmPassword" requiered/>
+            <FormF label="contraseña" id="password" type="password" placeholder="contraseña" value={FormData.password} onChange={handleCgange} name="password" required/>
+            <FormF label="confirmar contraseña" id="confirmPassword" type="password" placeholder="confirmar contraseña" value={FormData.confirmPassword} onChange={handleCgange} name="confirmPassword" required/>
             <Button type="submit">Enviar</Button>
         </form>
 

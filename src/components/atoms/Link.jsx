@@ -5,7 +5,7 @@ function Link ({href, children, target = '', className = '',...props}) {
         <a
         href={href}
         target={target}
-        rel={target == '_blank' ? 'noopener noreferrer' : undefined}
+        rel={target === '_blank' ? 'noopener noreferrer' : undefined}
         className={`Link ${className}`}
         {...props}
         >

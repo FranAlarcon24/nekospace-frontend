@@ -71,7 +71,7 @@
 }
 .pro {
     width: 100% !important;
-    max-width: 1000000px !important;
+    max-width: 100% !important;
     background-color: rgb(10, 3, 23);
     border-radius: 20px;
     box-shadow: 0 3px 9px rgba(0,0,0,0.08);
