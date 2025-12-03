@@ -1,6 +1,8 @@
 import React from 'react';
 import '../../styles/carrito.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Carrito({ items, onRemove, onClose, onClear }) {
   const total = items.reduce((acc, item) => acc + (item.precio ? Number(item.precio) : 0), 0);
   return (
@@ -28,7 +30,7 @@ function Carrito({ items, onRemove, onClose, onClear }) {
           <button className="carrito-comprar" disabled={items.length === 0} onClick={async () => {
             if (items.length === 0) return;
             try {
-              const response = await fetch(`${import.meta.env.VITE_API_URL}/carrito/checkout`, {
+              const response = await fetch(`${API_URL}//carrito/checkout`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

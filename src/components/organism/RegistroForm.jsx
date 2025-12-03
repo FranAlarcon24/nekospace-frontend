@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormF from "../molecules/FormF";
 import Button from "../atoms/Button";
 import { AuthC } from "../../context/AuthC";
-import generarMensaje from "../../utils/mensajes";
+import generarMensaje from "../../utils/generarMensaje";
 
 
 function RegistroForm(){
@@ -23,34 +23,25 @@ function RegistroForm(){
 
     const handlesubmit = async (e) => {
         e.preventDefault();
-        setError('');
-        setLoading(true);
-
-        if (FormData.password !== FormData.confirmPassword) {
-            setError('Las contraseñas no coinciden');
-            return;
-        }
+        
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData);
 
         try {
-            const response = await api.post('/auth/register', {
-                nombre: FormData.nombre,
-                correo: FormData.correo,
-                numero: FormData.numero,
-                password: FormData.password,
-                confirmPassword: FormData.confirmPassword,
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
             });
-            generarMensaje('Registro exitoso');
-            setFormData({
-                nombre:"",
-                correo:"",
-                password:"",
-                confirmPassword:"",
-            });
+            if (!response.ok) {
+                alert('registro exitoso');
+            } else {
+                alert('error en el registro');
+            }
         } catch (error) {
-            setError('Error en el registro. Inténtalo de nuevo.');
-            generarMensaje('Error en el registro', 'error');
-        } finally {
-            setLoading(false);
+            console.error('Error durante el registro:', error);
         }
     };
 
@@ -60,8 +51,8 @@ function RegistroForm(){
 
             <FormF label="nombre" id="nombre" type="text" placeholder="nombre" value={FormData.nombre} onChange={handleCgange} name="nombre"/>
             <FormF label="correo" id="correo" type="email" placeholder="ejemplo@gmail.com" value={FormData.correo} onChange={handleCgange} name="correo"/>
-            <FormF label="contraseña" id="contraseña" type="password" placeholder="contraseña" value={FormData.password} onChange={handleCgange} name="contraseña" requiered/>
-            <FormF label="confirmar contraseña" id="confirmar contraseña" type="password" placeholder="confirmar contraseña" value={FormData.confirmPassword} onChange={handleCgange} name="confirmar contraseña" requiered/>
+            <FormF label="contraseña" id="contraseña" type="password" placeholder="contraseña" value={FormData.password} onChange={handleCgange} name="password" required/>
+            <FormF label="confirmar contraseña" id="confirmar contraseña" type="password" placeholder="confirmar contraseña" value={FormData.confirmPassword} onChange={handleCgange} name="confirmPassword" requiered/>
             <Button type="submit">Enviar</Button>
         </form>
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import ProyectCard from '../components/organism/ProyectCard.jsx';
-import ProductosService from '../services/productos/ProductoService.jsx';
+import ProductoService from '../services/productos/ProductoService.jsx';
 import '../styles/card.css'
 import '../styles/homeUser.css'
 import gatoSpace from '../assets/images/gatoSpace.webp'
@@ -16,12 +16,12 @@ function HomeUser({ carrito, setCarrito }) {
 
   useEffect(() => {
     setLoading(true);
-    ProductosService.getAllProductos()
+    ProductoService.getAllProductos()
       .then((res) => {
         const raw = Array.isArray(res.data) ? res.data : (res.data.productos ?? res.data);
 
         const normalize = (item) => {
-          const placeholder = 'https://via.placeholder.com/300x200?text=No+Image';
+          const placeholder = 'https://placehold.co/300x200?text=No+Image';
           const getImage = (img) => {
             if (!img) return placeholder;
             if (typeof img === 'string') return img;

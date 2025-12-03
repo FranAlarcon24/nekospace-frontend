@@ -3,6 +3,10 @@ import '../styles/usuariosDashboard.css';
 import { uploadToImgBB } from '../utils/uploadImage';
 import Carrito from '../components/molecules/Carrito';
 
+const VITE_IMGBB_API_KEY = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`;
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 //const mockProducts = [
   //{ id: 1, modelo: 'Tarea completo', categoria: 'Admin', producto: 'admin', numeroId: 'admin@gmail.com' },
   //{ id: 2, modelo: 'joel perez', categoria: 'Usuario', producto: 'joel', numeroId: 'joel@gmail.com' },
@@ -25,7 +29,7 @@ function AdminDashboard() {
           console.error('No se encontró token de autenticación');
           return;
         }
-        const response = await fetch('https://nekospace-api.onrender.com/api/productos', {
+        const response = await fetch(`${API_URL}/productos`, {
           headers: {
             'Authorization': `Bearer ${token}`,
           }
@@ -78,10 +82,10 @@ function AdminDashboard() {
           const base64 = ev.target.result.split(',')[1];
           const formData = new FormData();
           formData.append('image', base64);
-          const response = await fetch(
-            `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
-            { method: 'POST', body: formData }
-          );
+          const response = await fetch(IMG_BB_API_KEY, {
+            method: 'POST',
+            body: formData
+          });
           const result = await response.json();
           if (result.success) {
             imageUrl = result.data.url;
