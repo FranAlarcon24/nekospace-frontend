@@ -43,5 +43,6 @@
     background-color: rgb(98, 79, 133)!important;
     padding: 40px;
     flex-wrap: wrap !important;
-    min-height: auto;
+    width: 96rem;
+    height: 1000px;
 }

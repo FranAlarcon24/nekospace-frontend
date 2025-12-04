@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormF from "../molecules/FormF";
 import Button from "../atoms/Button";
-import {generarMensaje} from "../../utils/generarMensaje";
+import api from "../api";
 
 
 function RegistroForm(){
@@ -23,29 +23,26 @@ function RegistroForm(){
     const handlesubmit = async (e) => {
         e.preventDefault();
         if (formData.password !== formData.confirmPassword) {
-        alert('Las contraseñas no coinciden');
-        return;
+            alert('Las contraseñas no coinciden');
+            return;
         }
         
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-            if (response.ok) {
-                alert('registro exitoso');
-            } else {
-                alert('error en el registro');
+            const response = await api.post('/register', data);
+                alert ('registro exitoso');
+                setFormData({
+                    nombre:"",
+                    correo:"",
+                    password:"",
+                    confirmPassword:"",
+                });
+            } catch (error) {
+                console.error('Error al registrar el usuario:', error);
+                alert('Error al registrar el usuario');
             }
-        } catch (error) {
-            console.error('Error durante el registro:', error);
-        }
     };
 
 

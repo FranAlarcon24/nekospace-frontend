@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { generarMensaje } from '../utils/generarMensaje';
 import { Link } from 'react-router-dom';
+import usuarioService from '../Services/Usuarios/UsuarioService.jsx';
 import '../styles/create.css'
 import '../styles/Contacto.css'
 
@@ -28,7 +29,7 @@ const CreateUser = () => {
                     "id": 3
                 }
             }
-             const response = await UsuarioService.createUser(usuario);
+             const response = await usuarioService.createUsuario(usuario);
             generarMensaje('Usuario creado correctamente', 'success');
         } finally {
             setLoading(false);
