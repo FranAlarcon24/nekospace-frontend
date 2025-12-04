@@ -52,8 +52,8 @@ function InicioForm(){
           <option value="admin">Administrador</option>
         </select>
       </div>
-      <button type="submit">Ingresar</button>
-      <ButtonL href="/create-user">Registrarse</ButtonL>
+      <button className="btnI" type="submit">Ingresar</button>
+      <ButtonL className="btnI" href="/create-user">Registrarse</ButtonL>
     </form>
   );
 }
