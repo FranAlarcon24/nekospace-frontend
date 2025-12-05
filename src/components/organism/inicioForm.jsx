@@ -10,9 +10,10 @@ import { useNavigate } from "react-router-dom";
 function InicioForm(){
   const navigate = useNavigate();
   const [FormData, setFormData] = useState({
+    nombre:"",
     correo: "",
     contraseña: "",
-    rol: "usuario"
+    rol: ""
   });
 
   const handleCgange = (e) => {
@@ -24,14 +25,14 @@ function InicioForm(){
 
   const handlesubmit = async (e) => {
     e.preventDefault();
-    if (!FormData.correo || !FormData.contraseña) {
-      generarMensaje('Completa correo y contraseña', 'error');
+    if (!FormData.nombre || !FormData.correo || !FormData.contraseña) {
+      generarMensaje('Completa todos los campos', 'error');
       return;
     }
     try {
       await login(FormData);
       if (FormData.rol === "admin") {
-        navigate("/admin/dashboard");
+        navigate("/HomeAuth");
       } else {
         navigate("/");
       }
@@ -43,6 +44,7 @@ function InicioForm(){
 
   return(
     <form onSubmit={handlesubmit} className="formC">
+      <FormF label="nombre" id="nombre" type="text" placeholder="nombre" value={FormData.nombre} onChange={handleCgange} name="nombre"/>
       <FormF label="correo" id="correo" type="email" placeholder="ejemplo@gmail.com" value={FormData.correo} onChange={handleCgange} name="correo"/>
       <FormF label="contraseña" id="contraseña" type="password" placeholder="contraseña" value={FormData.contraseña} onChange={handleCgange} name="contraseña"/>
       <div style={{ margin: '1rem 0' }}>

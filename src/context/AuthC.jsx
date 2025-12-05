@@ -25,25 +25,33 @@ export const AuthProvider = ({ children }) => {
             const res = await api.post('/auth/login', userData, { withCredentials: true });
             const accessToken = res.data.accessToken; 
             const user = res.data.user;
-            setUser(user); 
+           
 
-            localStorage.setItem('token', accessToken);
+            localStorage.setItem('access_token', accessToken);
             localStorage.setItem('user', JSON.stringify(user));
             setUser(user);
+            console.log('holaaa');
             setToken(accessToken);
+            api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+            return user;
         }catch (error) {
+            if (error.response?.status === 401) throw new Error('Correo o contraseña incorrectos');
+            if (error.response?.status >= 500) throw new Error('Error del servidor');
             console.error('error al iniciar session', error);
             throw new Error('credenciales invalidas');
         }
+
     };
 
     const logout = () => {
+        localStorage.removeItem('token');
         localStorage.removeItem('user');
         setUser(null);
+        setToken(null);
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, loading }}>
+        <AuthContext.Provider value={{ user, login, logout, loading, token }}>
             {children}
         </AuthContext.Provider>
     );
