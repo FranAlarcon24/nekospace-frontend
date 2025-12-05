@@ -1,6 +1,5 @@
 import { Container, Row } from 'react-bootstrap';
 import  ProyectCard from '../components/organism/ProyectCard.jsx';
-import Producto from '../data/Producto.js';
 import '../styles/card.css'
 import '../styles/Contacto.css'
 import gatoSpace from '../assets/images/gatoSpace.webp'

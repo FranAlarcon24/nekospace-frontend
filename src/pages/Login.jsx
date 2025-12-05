@@ -1,9 +1,7 @@
 import { Container, Row } from 'react-bootstrap';
-import Producto from '../data/Producto.js';
 import '../styles/card.css'
 import '../styles/login.css'
 import gatoSpace from '../assets/images/gatoSpace.webp'
-// import mapa from '../assets/images/mapa.webp'
 import InicioForm from '../components/organism/inicioForm.jsx';
 
 
