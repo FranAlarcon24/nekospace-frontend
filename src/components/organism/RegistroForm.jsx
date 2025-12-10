@@ -27,14 +27,12 @@ function RegistroForm(){
             return;
         }
         
-        // Asignar aquí el rol del usuario que será enviado al backend.
-        // Por seguridad, el registro público debería asignar siempre el rol 'usuario'.
-        // El backend en este proyecto espera un objeto "rol" con un "id", p.ej. { id: 3 }.
+   
         const payload = {
             nombre: FormData.nombre,
             correo: FormData.correo,
             password: FormData.password,
-            rol: { id: 2 } // cambiar a 1 (o al id correspondiente) para admin si es necesario desde un panel de administración
+            rol: { id: 2 } 
         };
         const data = payload;
 
