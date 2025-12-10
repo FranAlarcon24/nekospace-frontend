@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+import AdminRoute from './AdminRoute';
 
 const Home = lazy(() => import('../pages/homeUser'));
 const Login = lazy(() => import('../pages/Login'));
@@ -23,8 +24,8 @@ const userRoutes = [
 ];
 
 const adminRoutes = [
-  { path: '/Homeauth', element: <Homeauth />, isAdmin: true, showNavbar: true },
-  { path: '/admin/usuarios', element: <UsuariosDashboard />, isAdmin: true, showNavbar: true },
+  { path: '/Homeauth', element: <AdminRoute><Homeauth/></AdminRoute>, isAdmin: true, showNavbar: true },
+  { path: '/admin/usuarios', element: <AdminRoute><UsuariosDashboard/></AdminRoute>, isAdmin: true, showNavbar: true },
 ];
 
 const notFoundRoute = {
