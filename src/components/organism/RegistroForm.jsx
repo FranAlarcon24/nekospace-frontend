@@ -22,13 +22,17 @@ function RegistroForm(){
 
     const handlesubmit = async (e) => {
         e.preventDefault();
-        if (formData.password !== formData.confirmPassword) {
+        if (FormData.password !== FormData.confirmPassword) {
             alert('Las contraseñas no coinciden');
             return;
         }
         
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData);
+        const payload = {
+            nombre: FormData.nombre,
+            correo: FormData.correo,
+            password: FormData.password
+        };
+        const data = payload;
 
         try {
             const response = await api.post('/register', data);

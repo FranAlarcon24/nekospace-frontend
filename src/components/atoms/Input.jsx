@@ -6,7 +6,7 @@ function Input({type = 'text', placeholder, value, onChange, ...props}){
         <input
             type={type}
             placeholder={placeholder}
-            value={value}
+            value={value ?? ''}
             onChange={onChange}
             style={{ borderRadius: '12px', border: '1px solid #ccc', padding: '8px' }}
             {...props}

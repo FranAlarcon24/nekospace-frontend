@@ -11,7 +11,7 @@ function FormF ({label, id, type, placeholder, value, onChange, name, options}) 
                         id={id}
                         type={type}
                         placeholder={placeholder}
-                        value={value}
+                        value={value ?? ''}
                         onChange={onChange}
                         name={name}
                     />
@@ -25,7 +25,7 @@ function FormF ({label, id, type, placeholder, value, onChange, name, options}) 
                     <Label htmlFor={id}>{label}</Label>
                     <select
                         id={id}
-                        value={value}
+                        value={value ?? ''}
                         onChange={onChange}
                         name={name}
                     >

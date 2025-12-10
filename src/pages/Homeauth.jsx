@@ -12,7 +12,7 @@ function Homeauth() {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [form, setForm] = useState({ modelo: '', categoria: '', producto: '', numeroId: '', imagen: null });
+  const [form, setForm] = useState({ modelo: '', categoria: '', producto: '', numeroId: '', id: '', descripcion: '', imagen: null });
   const [carrito, setCarrito] = useState([]);
   const [showCarrito, setShowCarrito] = useState(false);
 
@@ -56,7 +56,7 @@ function Homeauth() {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setForm({ modelo: '', categoria: '', producto: '', numeroId: '', imagen: null });
+    setForm({ modelo: '', categoria: '', producto: '', numeroId: '', id: '', descripcion: '', imagen: null });
   };
 
   const handleChange = (e) => {
