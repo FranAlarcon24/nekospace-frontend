@@ -3,7 +3,6 @@ import { lazy } from 'react';
 const Home = lazy(() => import('../pages/homeUser'));
 const Login = lazy(() => import('../pages/Login'));
 const CreateUser = lazy(() => import('../pages/create-user'));
-const AdminDashboard = lazy(() => import('../pages/adminDashboard'));
 const UsuariosDashboard = lazy(() => import('../pages/usuariosDashboard'));
 const Homeauth = lazy(() => import('../pages/Homeauth'));
 const Contacto = lazy(() => import('../pages/contacto'));
