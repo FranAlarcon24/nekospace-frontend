@@ -1,48 +1,52 @@
 .text {
-    font-size: o.9rem   !important;
-    font-weight: 500 !important ;
-    text-align: justify;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: left;
     font-family: Arial, Helvetica, sans-serif;
-    color: rgb(0, 0, 0);
+    color: #111;
 }
 .text-principal{
-    text-align: center !important;
-    font-size: o.9rem   !important;
-    font-weight: 500 !important ;
-    text-align: justify;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
     font-family: Arial, Helvetica, sans-serif;
-    color: rgb(68, 22, 73);
-
-
+    color: #441647;
+    margin-bottom: 8px;
 }
 .btn4 {
-    font-size: o.9rem   !important;
-    font-weight: 500 !important ;
-    text-align: justify;
+    font-size: 0.95rem;
+    font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
-    color: rgb(0, 0, 0);
-    background-color: rgb(97, 64, 128);
-
-}
-.fon-card{
-    align-items: center !important;
-    text-align: center !important;
-    width: 90%;
-    margin: 2rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    background-color: rgb(193, 144, 179);
+    color: #fff;
+    background-color: #624f85;
+    padding: 10px 16px;
     border-radius: 8px;
-    box-shadow: 20px;
-    font-family: 'Times New Roman', Times, serif;
-    border-color: black !important;
+    border: none;
+    cursor: pointer;
+}
+.btn4:hover{ background-color:#533b6f }
+.fon-card{
+    align-items: center;
+    text-align: center;
+    width: 420px;
+    max-width: 92%;
+    margin: 2rem auto;
+    padding: 20px;
+    background: linear-gradient(180deg, rgba(193,144,179,0.95), rgba(158,110,156,0.95));
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    font-family: 'Inter', system-ui, sans-serif;
 }
 .fon4{
     background-image: url('../assets/images/brillos.webp');
-    background-size: contain;
-    background-color: rgb(98, 79, 133)!important;
-    padding: 40px;
+    background-size: cover;
+    background-color: rgba(98,79,133,0.95) !important;
+    padding: 40px 24px;
     flex-wrap: wrap !important;
-    width: 96rem;
-    height: 1000px;
+    width: 100%;
+    min-height: 100vh;
+}
+
+@media (max-width:720px){
+    .fon-card, .pro3{ width:92% }
 }
