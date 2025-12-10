@@ -19,7 +19,7 @@ const userRoutes = [
 ];
 
 const adminRoutes = [
-  { path: '/Homeauth', element: <AdminDashboard />, isAdmin: true, showNavbar: true },
+  { path: '/Homeauth', element: <Homeauth />, isAdmin: true, showNavbar: true },
   { path: '/admin/usuarios', element: <UsuariosDashboard />, isAdmin: true, showNavbar: true },
 ];
 
