@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import ProyectCard from '../components/organism/ProyectCard.jsx';
-import ProductosService from '../services/Productos/ProductoService.jsx';
+import ProductoService from '../services/Productos/ProductoService.jsx';
 import '../styles/card.css'
 import '../styles/homeUser.css'
 import gatoSpace from '../assets/images/gatoSpace.webp'
@@ -16,7 +16,7 @@ function HomeUser({ carrito, setCarrito }) {
 
   useEffect(() => {
     setLoading(true);
-    ProductosService.getAllProductos()
+    ProductoService.getAllProductos()
       .then((res) => {
         const raw = Array.isArray(res.data) ? res.data : (res.data.productos ?? res.data);
 

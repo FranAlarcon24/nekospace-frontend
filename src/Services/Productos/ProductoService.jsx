@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = 'https://nekospace-1.onrender.com/api/productos';
 
-class ProductosService {
+class ProductoService {
 
     getAllProductos() {
         return axios.get(BASE_URL);
@@ -25,4 +25,4 @@ class ProductosService {
     }
 }
 
-export default new ProductosService();
+export default new ProductoService();
