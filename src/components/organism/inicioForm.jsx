@@ -12,8 +12,7 @@ function InicioForm(){
   const [FormData, setFormData] = useState({
     nombre:"",
     correo: "",
-    contraseña: "",
-    rol: ""
+    password: ""
   });
 
   const handleCgange = (e) => {
@@ -21,7 +20,7 @@ function InicioForm(){
     setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
-  const { login } = useAuth();
+    const { login } = useAuth();
 
   const handlesubmit = async (e) => {
     e.preventDefault();
@@ -31,28 +30,20 @@ function InicioForm(){
     }
     try {
       await login(FormData);
-      if (FormData.rol === "admin") {
-        navigate("/HomeAuth");
-      } else {
-        navigate("/");
-      }
+      navigate("/");
     } catch (error) {
       generarMensaje('Error al iniciar sesión', 'error');
     }
-    setFormData({ correo: "", contraseña: "", rol: "usuario" });
+    setFormData({ nombre: "", correo: "", password: "" });
   };
 
   return(
     <form onSubmit={handlesubmit} className="formC">
       <FormF label="nombre" id="nombre" type="text" placeholder="nombre" value={FormData.nombre} onChange={handleCgange} name="nombre"/>
       <FormF label="correo" id="correo" type="email" placeholder="ejemplo@gmail.com" value={FormData.correo} onChange={handleCgange} name="correo"/>
-      <FormF label="contraseña" id="contraseña" type="password" placeholder="contraseña" value={FormData.contraseña} onChange={handleCgange} name="contraseña"/>
+      <FormF label="contraseña" id="password" type="password" placeholder="contraseña" value={FormData.password} onChange={handleCgange} name="password"/>
       <div style={{ margin: '1rem 0' }}>
-        <label htmlFor="rol">Rol:</label>
-        <select name="rol" id="rol" value={FormData.rol} onChange={handleCgange} style={{ marginLeft: '0.5rem' }}>
-          <option value="usuario">Usuario</option>
-          <option value="admin">Administrador</option>
-        </select>
+        
       </div>
       <button className="btnI" type="submit">Ingresar</button>
       <ButtonL className="btnI" href="/create-user">Registrarse</ButtonL>

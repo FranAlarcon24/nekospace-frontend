@@ -12,7 +12,6 @@ function NavBar({ onCarritoClick, carritoCount }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me" style={{alignItems:'center', width:'100%', justifyContent:'flex-end'}}>
             <Nav.Link href="/">Inicio</Nav.Link>
-            <Nav.Link as={Link} to="/catalogo">Catálogo</Nav.Link>
             <Nav.Link as={Link} to="/login">Iniciar Session</Nav.Link>
             <Nav.Link as={Link} to="/contacto">Contacto</Nav.Link>
             <Nav.Link as={Link} to="/about">Sobre nosotros</Nav.Link>
