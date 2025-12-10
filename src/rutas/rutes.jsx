@@ -3,7 +3,6 @@ import { lazy } from 'react';
 const Home = lazy(() => import('../pages/homeUser'));
 const Login = lazy(() => import('../pages/Login'));
 const CreateUser = lazy(() => import('../pages/create-user'));
-const HomeAdmin = lazy(() => import('../pages/homeAdmin'));
 const AdminDashboard = lazy(() => import('../pages/adminDashboard'));
 const UsuariosDashboard = lazy(() => import('../pages/usuariosDashboard'));
 const Homeauth = lazy(() => import('../pages/Homeauth'));
@@ -21,7 +20,7 @@ const userRoutes = [
 ];
 
 const adminRoutes = [
-  { path: '/admin/dashboard', element: <AdminDashboard />, isAdmin: true, showNavbar: true },
+  { path: '/Homeauth', element: <AdminDashboard />, isAdmin: true, showNavbar: true },
   { path: '/admin/usuarios', element: <UsuariosDashboard />, isAdmin: true, showNavbar: true },
 ];
 
