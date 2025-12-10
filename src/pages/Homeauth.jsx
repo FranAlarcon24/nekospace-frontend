@@ -7,11 +7,6 @@ const VITE_IMGBB_API_KEY = `https://api.imgbb.com/1/upload?key=${import.meta.env
 const API_URL = import.meta.env.VITE_API_URL;
 
 
-//const mockProducts = [
-  //{ id: 1, modelo: 'Tarea completo', categoria: 'Admin', producto: 'admin', numeroId: 'admin@gmail.com' },
-  //{ id: 2, modelo: 'joel perez', categoria: 'Usuario', producto: 'joel', numeroId: 'joel@gmail.com' },
-  //{ id: 3, modelo: 'javier', categoria: 'Usuario', producto: 'javier', numeroId: 'javier@gmail.com' },
-//];
 
 function Homeauth() {
   const [products, setProducts] = useState([]);
