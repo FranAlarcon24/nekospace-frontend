@@ -13,7 +13,6 @@ function InicioForm(){
     nombre:"",
     correo: "",
     contraseña: "",
-    rol: ""
   });
 
   const handleCgange = (e) => {
@@ -21,7 +20,7 @@ function InicioForm(){
     setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
-    const { login } = useAuth();
+  const { login } = useAuth();
 
   const handlesubmit = async (e) => {
     e.preventDefault();
@@ -30,16 +29,19 @@ function InicioForm(){
       return;
     }
     try {
-      await login(FormData);
-      if (FormData.rol === "admin") {
-        navigate("/HomeAuth");
-      } else {
-        navigate("/");
-      }
+      const loggedUser = await login({
+        nombre: FormData.nombre,
+        correo: FormData.correo,
+        contraseña: FormData.contraseña,
+      });
+      const roleName = loggedUser?.rol?.nombre?.toLowerCase?.() || loggedUser?.role?.toLowerCase?.() || '';
+      const roleId = loggedUser?.rol?.id ?? loggedUser?.roleId;
+      const isAdmin = roleName.includes('admin') || roleId === 1; // Ajusta según tu backend
+      navigate(isAdmin ? "/Homeauth" : "/");
     } catch (error) {
       generarMensaje('Error al iniciar sesión', 'error');
     }
-    setFormData({ correo: "", contraseña: "", rol: "usuario" });
+    setFormData({ nombre: "", correo: "", contraseña: "" });
   };
 
   return(
@@ -47,13 +49,7 @@ function InicioForm(){
       <FormF label="nombre" id="nombre" type="text" placeholder="nombre" value={FormData.nombre} onChange={handleCgange} name="nombre"/>
       <FormF label="correo" id="correo" type="email" placeholder="ejemplo@gmail.com" value={FormData.correo} onChange={handleCgange} name="correo"/>
       <FormF label="contraseña" id="contraseña" type="password" placeholder="contraseña" value={FormData.contraseña} onChange={handleCgange} name="contraseña"/>
-      <div style={{ margin: '1rem 0' }}>
-        <label htmlFor="rol">Rol:</label>
-        <select name="rol" id="rol" value={FormData.rol} onChange={handleCgange} style={{ marginLeft: '0.5rem' }}>
-          <option value="usuario">Usuario</option>
-          <option value="admin">Administrador</option>
-        </select>
-      </div>
+      {/* Eliminado selector de rol: el usuario no puede elegir rol. El backend lo determina. */}
       <button className="btnI" type="submit">Ingresar</button>
       <ButtonL className="btnI" href="/create-user">Registrarse</ButtonL>
     </form>

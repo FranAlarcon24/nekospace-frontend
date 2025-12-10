@@ -8,12 +8,14 @@ const Homeauth = lazy(() => import('../pages/Homeauth'));
 const Contacto = lazy(() => import('../pages/contacto'));
 const CarritoPage = lazy(() => import('../pages/carrito'));
 const About = lazy(() => import('../pages/about'));
+const Catalogo = lazy(() => import('../pages/catalogo'));
 
 const userRoutes = [
   { path: '/', element: <Home />, showNavbar: true },
   { path: '/login', element: <Login />, showNavbar: false },
   { path: '/create-user', element: <CreateUser />, showNavbar: false },
   { path: '/contacto', element: <Contacto />, showNavbar: true },
+  { path: '/catalogo', element: <Catalogo />, showNavbar: true },
   { path: '/carrito', element: <CarritoPage />, showNavbar: true },
   { path: '/about', element: <About />, showNavbar: true },
 ];
