@@ -19,7 +19,7 @@ function Homeauth() {
   useEffect(() => {
     const cargarProductos = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('access_token');
         if (!token) {
           console.error('No se encontró token de autenticación');
           return;

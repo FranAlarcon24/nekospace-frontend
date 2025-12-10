@@ -14,9 +14,25 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
         const userData = localStorage.getItem('user');
-        if (userData) {
-            setUser(JSON.parse(userData));
+        if (userData && userData !== 'undefined') {
+            try {
+                setUser(JSON.parse(userData));
+            } catch (err) {
+                console.warn('Invalid user in localStorage, removing it.', err);
+                localStorage.removeItem('user');
+            }
+        } else if (userData === 'undefined') {
+            // clean up invalid stored value
+            localStorage.removeItem('user');
         }
+
+        // restore access token header if present and valid
+        const storedToken = localStorage.getItem('access_token');
+        if (storedToken && storedToken !== 'undefined') {
+            setToken(storedToken);
+            api.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
+        }
+
         setLoading(false);
     }, []);
 
@@ -44,10 +60,12 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        localStorage.removeItem('token');
+        // remove the access token (consistent key used on login)
+        localStorage.removeItem('access_token');
         localStorage.removeItem('user');
         setUser(null);
         setToken(null);
+        delete api.defaults.headers.common['Authorization'];
     };
 
     return (
