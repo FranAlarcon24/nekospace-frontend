@@ -34,7 +34,7 @@ function RegistroForm(){
             nombre: FormData.nombre,
             correo: FormData.correo,
             password: FormData.password,
-            rol: { id: 3 } // cambiar a 1 (o al id correspondiente) para admin si es necesario desde un panel de administración
+            rol: { id: 2 } // cambiar a 1 (o al id correspondiente) para admin si es necesario desde un panel de administración
         };
         const data = payload;
 

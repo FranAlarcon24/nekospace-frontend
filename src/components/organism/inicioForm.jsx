@@ -29,10 +29,15 @@ function InicioForm(){
       return;
     }
     try {
-      await login(FormData);
+      const user = await login(FormData);
+      if (user) {
+        generarMensaje('Sesión iniciada', 'success');
+      } else {
+        generarMensaje('Sesión iniciada (sin datos de usuario devueltos)', 'warning');
+      }
       navigate("/");
     } catch (error) {
-      generarMensaje('Error al iniciar sesión', 'error');
+      generarMensaje(error?.message || 'Error al iniciar sesión', 'error');
     }
     setFormData({ nombre: "", correo: "", password: "" });
   };

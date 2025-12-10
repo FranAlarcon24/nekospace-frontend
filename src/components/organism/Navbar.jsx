@@ -1,9 +1,28 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthC';
 
 function NavBar({ onCarritoClick, carritoCount }) {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
+
+  const getRole = (u) => {
+    if (!u) return null;
+    if (u.role) return String(u.role).toLowerCase();
+    if (u.Rol) return String(u.Rol).toLowerCase();
+    if (u.rol) {
+      if (typeof u.rol === 'string') return u.rol.toLowerCase();
+      if (u.rol.nombre) return String(u.rol.nombre).toLowerCase();
+      if (u.rol.name) return String(u.rol.name).toLowerCase();
+    }
+    return null;
+  };
+
+  const isAdmin = () => {
+    const role = getRole(user);
+    return role && role.includes('admin');
+  };
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container className="tirita-neg">
@@ -12,8 +31,21 @@ function NavBar({ onCarritoClick, carritoCount }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me" style={{alignItems:'center', width:'100%', justifyContent:'flex-end'}}>
             <Nav.Link href="/">Inicio</Nav.Link>
-            <Nav.Link as={Link} to="/login">Iniciar Session</Nav.Link>
+            {user ? (
+              <Nav.Link
+                onClick={() => {
+                  logout();
+                  navigate('/');
+                }}
+                style={{ cursor: 'pointer' }}
+              >
+                Cerrar sesión
+              </Nav.Link>
+            ) : (
+              <Nav.Link as={Link} to="/login">Iniciar Session</Nav.Link>
+            )}
             <Nav.Link as={Link} to="/catalogo">Catálogo</Nav.Link>
+            {isAdmin() && <Nav.Link as={Link} to="/Homeauth">Admin</Nav.Link>}
             <Nav.Link as={Link} to="/contacto">Contacto</Nav.Link>
             <Nav.Link as={Link} to="/about">Sobre nosotros</Nav.Link>
             <Nav.Link

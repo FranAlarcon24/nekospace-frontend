@@ -39,17 +39,33 @@ export const AuthProvider = ({ children }) => {
     const login = async (userData) => {
         try {
             const res = await api.post('/auth/login', userData, { withCredentials: true });
-            const accessToken = res.data.accessToken; 
-            const user = res.data.user;
-           
+            // handle different possible response shapes from the backend
+                        const accessToken = res.data.accessToken || res.data.token || res.data.access_token || null;
+                        let user = res.data.user || res.data.usuario || res.data.data || null;
 
-            localStorage.setItem('access_token', accessToken);
-            localStorage.setItem('user', JSON.stringify(user));
-            setUser(user);
-            console.log('holaaa');
-            setToken(accessToken);
-            api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-            return user;
+                        // If backend returns role/user info at the root (like your example), use res.data as user
+                        if (!user && res.data) {
+                            const maybeRole = res.data.Rol || res.data.role || res.data.rol || res.data.nombre || res.data.email;
+                            if (maybeRole) {
+                                user = res.data;
+                            }
+                        }
+
+                        if (!accessToken) console.warn('AuthC.login: no access token found in response', res.data);
+                        if (!user) console.warn('AuthC.login: no user object found in response', res.data);
+
+                        if (accessToken) {
+                                localStorage.setItem('access_token', accessToken);
+                                setToken(accessToken);
+                                api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+                        }
+
+                        if (user) {
+                                localStorage.setItem('user', JSON.stringify(user));
+                                setUser(user);
+                        }
+
+                        return user || null;
         }catch (error) {
             if (error.response?.status === 401) throw new Error('Correo o contraseña incorrectos');
             if (error.response?.status >= 500) throw new Error('Error del servidor');
