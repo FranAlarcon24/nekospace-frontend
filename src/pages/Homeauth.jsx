@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/usuariosDashboard.css';
 import { uploadToImgBB } from '../utils/uploadImage';
 import Carrito from '../components/molecules/Carrito';
+import ProductoService from '../Services/Productos/ProductoService.jsx';
 
 const VITE_IMGBB_API_KEY = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`;
 const API_URL = import.meta.env.VITE_API_URL;
@@ -10,6 +11,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function Homeauth() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({ modelo: '', categoria: '', producto: '', numeroId: '', id: '', descripcion: '', imagen: null });
@@ -18,25 +20,36 @@ function Homeauth() {
 
   useEffect(() => {
     const cargarProductos = async () => {
+      setLoading(true);
       try {
-        const token = localStorage.getItem('access_token');
-        if (!token) {
-          console.error('No se encontró token de autenticación');
-          return;
-        }
-        const response = await fetch(`${API_URL}/productos`, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          }
+        const res = await ProductoService.getAllProductos();
+        const raw = Array.isArray(res.data) ? res.data : (res.data.productos ?? res.data);
+
+        const placeholder = 'https://placehold.co/300x200?text=No+Image';
+        const getImage = (img) => {
+          if (!img) return placeholder;
+          if (typeof img === 'string') return img;
+          if (Array.isArray(img) && img.length) return img[0].url ?? img[0].ruta ?? img[0];
+          if (typeof img === 'object') return img.url ?? img.ruta ?? img.path ?? placeholder;
+          return placeholder;
+        };
+
+        const normalized = (item) => ({
+          id: item.id ?? item._id,
+          modelo: item.modelo ?? item.name ?? item.nombreProducto ?? item.titulo ?? '',
+          categoria: item.categoria?.nombreCategoria ?? item.categoria?.nombre ?? item.categoriaName ?? item.categoria ?? '',
+          producto: item.producto ?? item.name ?? item.nombreProducto ?? '',
+          numeroId: item.numeroId ?? item.numero_id ?? item.sku ?? '',
+          descripcion: item.descripcionProducto ?? item.descripcion ?? item.description ?? '',
+          imagen: getImage(item.imagen ?? item.image),
+          raw: item,
         });
 
-        if (!response.ok) {
-          throw new Error('Error al cargar productos');
-        }
-        const data = await response.json();
-        setProducts(data.productos || []);
+        setProducts((raw || []).map(normalized));
       } catch (error) {
         console.error('Error cargando productos:', error);
+      } finally {
+        setLoading(false);
       }
     };
     cargarProductos();
@@ -127,9 +140,15 @@ function Homeauth() {
     }
   };
 
-  const handleDeleteProduct = (id) => {
-    if (window.confirm('¿Seguro que quieres eliminar este producto?')) {
-      setProducts(products.filter(product => product.id !== id));
+  const handleDeleteProduct = async (id) => {
+    if (!window.confirm('¿Seguro que quieres eliminar este producto?')) return;
+    try {
+      await ProductoService.deleteProductos(id);
+      setProducts(prev => prev.filter(product => (product.id ?? product._id) !== id));
+      alert('Producto eliminado correctamente');
+    } catch (err) {
+      console.error('Error eliminando producto:', err);
+      alert('Error al eliminar el producto');
     }
   };
 
